@@ -48,6 +48,15 @@ public:
 			Append(list.Get(i));
 		}
 	}; 
+	LinkedList(const LinkedList <T>& list)  // Копирующий конструктор
+	{
+		head = NULL;
+		tail = NULL;
+		for (int i = 0; i < list.lenght; i++)
+		{
+			Append(list.Get(i));
+		}
+	};
 // Декомпозиция
 	T GetFirst() // Получить первый элемент в списке. Может выбрасывать исключения : − IndexOutOfRange(если список пуст)
 	{
@@ -73,7 +82,7 @@ public:
 		}
 		return buf;
 	}
-	T Get(int index) // Получить элемент по индексу. Может выбрасывать исключения :− IndexOutOfRange(если индекс отрицательный или больше / равен числу элементов)		
+	T& Get(int index) // Получить элемент по индексу. Может выбрасывать исключения :− IndexOutOfRange(если индекс отрицательный или больше / равен числу элементов)		
 	{
 		assert(!(index == 0 && lenght == 0));
 
@@ -87,7 +96,7 @@ public:
 		{
 			buf = buf->next;
 		}
-		return buf->data;
+		return (buf->data);
 	}
 
 	// Получить список из всех элементов, начиная с startIndex и заканчивая endIndex.

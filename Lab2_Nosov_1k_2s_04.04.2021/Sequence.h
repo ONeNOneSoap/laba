@@ -9,11 +9,12 @@ public:
 	// Конструкторы
 	Sequence() {};
 	Sequence(T* items, int count);
+	virtual Sequence* clone() const = 0;
 	
 	// Декомпозиция
 	virtual T GetFirst() = 0;	// Возвращает первый элемент
 	virtual T GetLast() = 0;	// Возвращает последний элемент
-	virtual T Get(int index) = 0;	// Возвращает элемент по индексу
+	virtual T& Get(int index) = 0;	// Возвращает элемент по индексу
 	//GetSubsequence возвращает указатель на подпоследовательность используя 
 	// индексы начала и конца подпоследовательности из  Sequence 
 	virtual Sequence<T>* GetSubsequence(int startIndex, int endIndex) = 0;

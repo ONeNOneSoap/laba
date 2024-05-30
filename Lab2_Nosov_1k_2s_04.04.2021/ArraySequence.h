@@ -5,30 +5,41 @@
 template <class T> class ArraySequence : public Sequence<T>
 {
 private:
-	DynamicArray<T>* items;
+	DynamicArray<T>* array_sequence_items;
 public:
 	// Конструкторы:
 	ArraySequence() 
 	{
-		items = new DynamicArray<T>(0);
+		array_sequence_items = new DynamicArray<T>(0);
 	} // Создать пустой список
 	ArraySequence(T* arr, int count) {
-		items = new DynamicArray<T>(0);
-		items->Resize(count);
+		array_sequence_items = new DynamicArray<T>(0);
+		array_sequence_items->Resize(count);
 		for (int i = 0; i < count; i++)
 		{
-			items->Set(i, arr[i]);
+			array_sequence_items->Set(i, arr[i]);
 		}
 	} // Копировать элементы из переданного массива
-	ArraySequence(ArraySequence <T>& list)
-	{
-		items = new DynamicArray<T>(0);
-		items->Resize(list.GetLength());
-		for (int i = 0; i < (list.GetLength()); i++)
+
+	ArraySequence(int count) {
+		array_sequence_items = new DynamicArray<T>(count);
+		T defaul = T();
+		for (int i = 0; i < count; i++)
 		{
-			items->Set(i, list.Get(i));
+			array_sequence_items->Set(i, defaul);
 		}
+	} // Копировать элементы из переданного массива
+
+	// Создать на основе другого - Копирующий конструктор
+	ArraySequence(const ArraySequence <T>& arr)
+	{
+		array_sequence_items = new DynamicArray<T>(*(arr.array_sequence_items));
 	}// Создать на основе другого - Копирующий конструктор
+
+	ArraySequence<T>* clone() const override {
+		auto arr = new ArraySequence(*this);
+		return arr;
+	}
 	
 	//Операции из Sequence
 	T GetFirst()
@@ -37,11 +48,11 @@ public:
 	}
 	T GetLast()
 	{
-		return this->Get(items->GetSize()-1);
+		return this->Get(array_sequence_items->GetSize()-1);
 	}
-	T Get(int index)
+	T& Get(int index)
 	{
-		return items->Get(index);
+		return array_sequence_items->Get(index);
 	}
 	ArraySequence<T>* GetSubsequence(int startIndex, int endIndex)
 	{
@@ -56,27 +67,27 @@ public:
 	}
 	int GetLength()
 	{
-		return items->GetSize();
+		return array_sequence_items->GetSize();
 	}
 	void Set(int index, T value) // Задать элемент по индексу. Может выбросить IndexOutOfRange
 	{
-		items->Set(index, value);
+		array_sequence_items->Set(index, value);
 	}
 
 	// Добавляет элемент в конец списка
 	// TODO: Сделать реализацию без resize в Append, Prepend, InsertAt
 	void Append(T item)
 	{
-		items->Resize(items->GetSize() + 1);
-		items->Set(items->GetSize()-1, item);
+		array_sequence_items->Resize(array_sequence_items->GetSize() + 1);
+		array_sequence_items->Set(array_sequence_items->GetSize()-1, item);
 	}
 	// Добавляет элемент в начало списка
 	
 	// TODO: Подумать над балансировкой массива.
 	void Prepend(T item)
 	{
-		items->ResizeRight(items->GetSize() + 1);
-		items->Set(0, item);
+		array_sequence_items->ResizeRight(array_sequence_items->GetSize() + 1);
+		array_sequence_items->Set(0, item);
 	}
 	// Вставляет элемент в заданную позицию
 	void InsertAt(T item, int index)
@@ -107,11 +118,11 @@ public:
 	}*/
 	void Resize(int newSize)
 	{
-		items->Resize(newSize);
+		array_sequence_items->Resize(newSize);
 	}
 	void ResizeRight(int newSize)
 	{
-		items->ResizeRight(newSize);
+		array_sequence_items->ResizeRight(newSize);
 	}
 };
 

@@ -13,7 +13,7 @@ std::mt19937 engine1; // mt19937 как один из вариантов
 
 int testLinkedListInt(void)
 {
-	engine1.seed(std::time(nullptr)); // Семя для рандома
+	engine1.seed(std::time((time_t*)nullptr)); // Семя для рандома
 
 	int arr[ITEMS_COUNT] = { 0 };
 

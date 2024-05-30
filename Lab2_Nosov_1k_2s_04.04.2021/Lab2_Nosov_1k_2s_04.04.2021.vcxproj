@@ -27,25 +27,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Test_Debug|Win32'">false</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="MyComplex.cpp" />
     <ClCompile Include="testDynamicArray.cpp" />
     <ClCompile Include="testLinkedList.cpp" />
     <ClCompile Include="testQueue.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArraySequence.h" />
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedListSequence.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="MyComplex.h" />
     <ClInclude Include="Queque.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="testUnit.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -37,16 +37,28 @@ public:
 			data[i] = dynamicArray.Get(i);
 		}
 	}
+	DynamicArray(const DynamicArray<T>& dynamicArray) //	Копирующий конструктор
+	{
+		lenght = dynamicArray.lenght;
+		data = new T[lenght];
+		for (int i = 0; i < lenght; i++)
+		{
+			data[i] = dynamicArray.Get(i);
+		}
+	}
 
 // Декомпозиция
 	
 	// Получить элемент по индексу. 
 	// Может выбрасывать исключения :	− IndexOutOfRange(если индекс отрицательный, больше 
 	// или равен числу элементов или указывает на не заданный элемент)
-	T Get(int index)
+	T& Get(int index)
 	{
+		
 		assert(index >= 0);
 		assert(index < lenght);
+		//auto temp = new T(data[index]);
+
 		return data[index];
 	}
 	int GetSize() //	Получить размер массива

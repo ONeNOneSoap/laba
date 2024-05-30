@@ -39,7 +39,7 @@ bool complex::operator == (complex complex)
 
 
 
-complex complex::operator*(complex& complex)
+complex complex::operator*(const complex& complex)
 {
     double i, j;
     i = real * complex.real - imagine * complex.imagine;
@@ -126,4 +126,8 @@ complex& complex::operator/=(complex a)
     real /= a.real;
     imagine /= a.imagine;
     return *this;
+}
+
+double complex::Norm() {
+    return sqrt(real*real+imagine*imagine);
 }

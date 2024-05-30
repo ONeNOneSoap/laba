@@ -10,11 +10,11 @@ public:
 	//Конструкторы
 	LinkedListSequence(LinkedListSequence <T>& list)
 	{
-		internalList = new LinkedList<T>;
-		for (int i = 0; i < list.GetLength(); i++)
-		{
-			this->Append(list.Get(i));
-		}
+		internalList = new LinkedList<T>(list->internalList);
+	};
+	LinkedListSequence(const LinkedListSequence <T>& list)
+	{
+		internalList = new LinkedList<T>(*list.internalList);
 	};
 	LinkedListSequence()
 	{ 
@@ -24,11 +24,9 @@ public:
 	{
 		internalList = new LinkedList<T>(items, count);
 	};
-	// Деструктор
-	/*~LinkedListSequence()
-	{
-		delete internalList;
-	}*/
+	LinkedListSequence<T>* clone() const override {
+		return new LinkedListSequence<T>(*this);
+	}
 
 	T GetFirst()
 	{
@@ -38,7 +36,7 @@ public:
 	{
 		return internalList->GetLast();
 	}
-	T Get(int index)
+	T& Get(int index)
 	{
 		return internalList->Get(index);
 	}

@@ -12,11 +12,13 @@ private:
 public:
     complex() { real = 0; imagine = 0; }
     complex(double r, double i) { real = r; imagine = i; }
+    complex(double r) { real = r; imagine = 0; };
+    complex(int r) { real = (double)r; imagine = 0; };
     complex(const complex& ob) { real = ob.real; imagine = ob.imagine; };
     complex& operator = (complex);
     complex operator + (complex);
     complex operator - (complex);
-    complex operator * (complex&);
+    complex operator * (const complex&);
     complex operator / (complex&);
     complex& operator += (complex);
     complex& operator -= (complex);
@@ -28,5 +30,7 @@ public:
     bool operator != (complex& com);
     bool operator > (complex& com);
     bool operator < (complex& com);
-
+    double Norm();
+    complex conjugate() { return complex(real, -imagine); };
+    double GetReal() { return real; };
 };
